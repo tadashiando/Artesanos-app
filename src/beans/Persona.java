@@ -1,7 +1,9 @@
 package beans;
 
-import java.io.Serializable;
 import static javax.persistence.CascadeType.ALL;
+
+import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import enterpriseapp.hibernate.annotation.CrudField;
+import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.dto.Dto;
 
 @Entity(name = "persona")
+@CrudTable(filteringPropertyName="nombre")
 public class Persona extends Dto implements Serializable{
 	private static final long serialVersionUID = -3097781467409038393L;
 
@@ -26,8 +31,9 @@ public class Persona extends Dto implements Serializable{
 	
 	private String numeroDeTelefono;
 	
-	@OneToOne(cascade = ALL)
-	private Direccion direccion; 
+	@OneToOne(cascade=ALL, orphanRemoval=true, targetEntity=Direccion.class)
+	@CrudField(embedded=true, forceRequired=true)
+	private Set<Direccion> direccion; 
 
 	@Override
 	public Long getId() {
@@ -67,11 +73,11 @@ public class Persona extends Dto implements Serializable{
 		this.numeroDeTelefono = numeroDeTelefono;
 	}
 
-	public Direccion getDireccion() {
+	public Set<Direccion> getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccion(Direccion direccion) {
+	public void setDireccion(Set<Direccion> direccion) {
 		this.direccion = direccion;
 	}
 }

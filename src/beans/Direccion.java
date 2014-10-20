@@ -4,16 +4,20 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.dto.Dto;
 
+
 @Entity(name = "direccion")
+@CrudTable(filteringPropertyName = "calle")
 public class Direccion extends Dto implements Serializable{
 	private static final long serialVersionUID = 8099254536183698672L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	private String calle;
@@ -22,7 +26,7 @@ public class Direccion extends Dto implements Serializable{
 	private String codigoPostal;
 	
 	@Override
-	public Object getId() {
+	public Long getId() {
 		return id;
 	}
 
