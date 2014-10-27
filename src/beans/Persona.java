@@ -8,8 +8,9 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import enterpriseapp.hibernate.annotation.CrudField;
 import enterpriseapp.hibernate.annotation.CrudTable;
@@ -21,17 +22,22 @@ public class Persona extends Dto implements Serializable{
 	private static final long serialVersionUID = -3097781467409038393L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@CrudField(showInTable=false)
 	private Long id;
 	
 	@Column(nullable=false)
 	private String nombre;
 	
+	@CrudField(showInTable=false)
 	private String documentoIdentidad;
 	
 	private String numeroDeTelefono;
 	
-	@OneToOne(cascade=ALL, orphanRemoval=true, targetEntity=Direccion.class)
+	@CrudField(isEmail=true)
+	private String email;
+	
+	@OneToMany(cascade=ALL, orphanRemoval=true)
 	@CrudField(embedded=true, forceRequired=true)
 	private Set<Direccion> direccion; 
 
@@ -71,6 +77,14 @@ public class Persona extends Dto implements Serializable{
 
 	public void setNumeroDeTelefono(String numeroDeTelefono) {
 		this.numeroDeTelefono = numeroDeTelefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Set<Direccion> getDireccion() {

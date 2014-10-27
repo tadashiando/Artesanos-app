@@ -9,8 +9,8 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.CloseEvent;
 
-import enterpriseapp.ui.crud.CrudBuilder;
-import enterpriseapp.ui.crud.CrudComponent;
+import ui.crud.CrudBuilder;
+import ui.crud.CrudComponent;
 
 public class Registros extends CustomComponent implements Window.CloseListener{
 	private static final long serialVersionUID = -2134814601190871857L;
@@ -50,7 +50,7 @@ public class Registros extends CustomComponent implements Window.CloseListener{
 		mywindow = new Window(crud.getCaption());
 		mywindow.setPositionX(200);
 		mywindow.setPositionY(100);
-		mywindow.setWidth("60%");
+		mywindow.setWidth("80%");
 		ventanaPrincipal.addWindow(mywindow);
 		mywindow.addListener(this);
 		
