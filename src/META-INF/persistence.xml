@@ -7,6 +7,8 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 	<class>beans.Empresa</class>
 	<class>beans.Direccion</class>
 	<class>beans.Materiales</class>
+	<class>beans.PersonaDireccion</class>
+	<class>beans.PersonaDireccionPK</class>
 		<properties>
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/artesanos" />
 			<property name="hibernate.connection.username" value="root" />
