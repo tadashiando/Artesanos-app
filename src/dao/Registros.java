@@ -1,7 +1,9 @@
 package dao;
 
 import beans.Empresa;
+import beans.Materiales;
 import beans.Persona;
+import beans.Productos;
 
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.MenuBar;
@@ -30,6 +32,18 @@ public class Registros extends CustomComponent implements Window.CloseListener{
 	public MenuBar.Command registroEmpresa() {
 		CrudComponent<Empresa> crud = new CrudBuilder<Empresa>(Empresa.class).build();
 		crud.setCaption("Registro de Empresa");
+		return commandMenu(crud);
+	}
+	
+	public MenuBar.Command registroProductos() {
+		CrudComponent<Productos> crud = new CrudBuilder<Productos>(Productos.class).build();
+		crud.setCaption("Registro de Productos y Fórmulas");
+		return commandMenu(crud);
+	}
+	
+	public MenuBar.Command registroMateriales() {
+		CrudComponent<Materiales> crud = new CrudBuilder<Materiales>(Materiales.class).build();
+		crud.setCaption("Registro de Materiales");
 		return commandMenu(crud);
 	}
 	

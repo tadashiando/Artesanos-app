@@ -13,20 +13,22 @@ public class MainMenu {
 		Registros registros = new Registros(ventanaPrinc);
 
 		MenuBar barmenu = new MenuBar();
-		MenuItem drinks = barmenu.addItem("Ventas", null, null);
+		MenuItem menu = barmenu.addItem("Ventas", null, null);
 
-		MenuItem hots = drinks.addItem("Clientes", null, null);
-		hots.addItem("Registro de Personas",
+		MenuItem clientes = menu.addItem("Clientes", null, null);
+		clientes.addItem("Registro de Personas",
 		    new ThemeResource("icons/tea-16px.png"), registros.registroPersona());
-		hots.addItem("Registro de Empresas",
+		clientes.addItem("Registro de Empresas",
 		    new ThemeResource("icons/coffee-16px.png"), registros.registroEmpresa());
 
-		MenuItem colds = drinks.addItem("Cold", null, null);
-		colds.addItem("Milk",      null, null);
-		colds.addItem("Weissbier", null, null);
+		MenuItem productos = menu.addItem("Productos", null, null);
+		productos.addItem("Formulas de Productos",
+			    new ThemeResource("icons/tea-16px.png"), registros.registroProductos());
+		productos.addItem("Formulas de Materiales",
+			    new ThemeResource("icons/tea-16px.png"), registros.registroMateriales());
 
-		drinks.addSeparator();
-		drinks.addItem("Quit Drinking", null, null);
+		menu.addSeparator();
+		menu.addItem("Quit Drinking", null, null);
 		        
 		MenuItem snacks = barmenu.addItem("Snacks", null, null);
 		snacks.addItem("Weisswurst", null, null);

@@ -37,6 +37,7 @@ import enterpriseapp.hibernate.ContainerFactory;
 import enterpriseapp.hibernate.CustomHbnContainer.EntityItem;
 import enterpriseapp.hibernate.DefaultHbnContainer;
 import enterpriseapp.hibernate.annotation.CrudField;
+import enterpriseapp.hibernate.annotation.CrudName;
 import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.annotation.Downloadable;
 import enterpriseapp.hibernate.dto.Dto;
@@ -77,12 +78,13 @@ public class DefaultCrudFieldFactory extends DefaultFieldFactory {
 	 * @param uiContext the component where the field is presented.
 	 * @param propertyType the field property type.
 	 * @param crudFieldAnnotation CrudFieldAnnotation annotation (if present).
+	 * @param crudname 
 	 * @param columnAnnotation ColumnAnnotation annotation (if present).
 	 * @param joinColumnAnnotation ColumnAnnotation annotation (if present).
 	 * @param typeAnnotation TypeAnnotation (if present)
 	 */
-	public void configureField(Field field, Object bean, Item item, String pid, Component uiContext, Class<?> propertyType, CrudField crudFieldAnnotation, Column columnAnnotation, JoinColumn joinColumnAnnotation, Type typeAnnotation) {
-		field.setCaption(getFieldCaption(pid, bean.getClass()));
+	public void configureField(Field field, Object bean, Item item, String pid, Component uiContext, Class<?> propertyType, CrudField crudFieldAnnotation, CrudName crudname, Column columnAnnotation, JoinColumn joinColumnAnnotation, Type typeAnnotation) {
+		field.setCaption(getFieldCaption(pid, bean.getClass(), crudname));
 		checkRequired(field, crudFieldAnnotation, columnAnnotation, joinColumnAnnotation);
 		checkLength(field, columnAnnotation, typeAnnotation);
 		checkNullRepresentation(field);
@@ -107,6 +109,7 @@ public class DefaultCrudFieldFactory extends DefaultFieldFactory {
 			
 			java.lang.reflect.Field declaredField = bean.getClass().getDeclaredField(pid);
 			CrudField crudFieldAnnotation = declaredField.getAnnotation(CrudField.class);
+			CrudName crudname = declaredField.getAnnotation(CrudName.class);
 			Column columnAnnotation = declaredField.getAnnotation(Column.class);
 			JoinColumn joinColumnAnnotation = declaredField.getAnnotation(JoinColumn.class);
 			Downloadable downloadableAnnotation = declaredField.getAnnotation(Downloadable.class);
@@ -167,7 +170,7 @@ public class DefaultCrudFieldFactory extends DefaultFieldFactory {
 				field = super.createField(item, propertyId, uiContext);
 			}
 			
-			configureField(field, bean, item, pid, uiContext, propertyType, crudFieldAnnotation, columnAnnotation, joinColumnAnnotation, typeAnnotation);
+			configureField(field, bean, item, pid, uiContext, propertyType, crudFieldAnnotation, crudname, columnAnnotation, joinColumnAnnotation, typeAnnotation);
 			
 		} catch (SecurityException e) {
 			throw new RuntimeException(e);
@@ -441,9 +444,12 @@ public class DefaultCrudFieldFactory extends DefaultFieldFactory {
 	 * Returns the field caption for the specified property. Gets the error string from properties file.
 	 * @param propertyId property name.
 	 * @param type property type.
+	 * @param crudname 
 	 * @return field caption.
 	 */
-	public static String getFieldCaption(Object propertyId, Class<?> type) {
+	public static String getFieldCaption(Object propertyId, Class<?> type, CrudName crudname) {
+		if(crudname != null)
+			return crudname.name();
 		String typeName = type.getSimpleName();
 		String nameFromFile = Utils.getPropertyLabel(typeName, propertyId);
 		return nameFromFile.isEmpty() ? DefaultFieldFactory.createCaptionByPropertyId(propertyId) : nameFromFile;
