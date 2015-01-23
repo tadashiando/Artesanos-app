@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import annotation.CrudName;
 import enterpriseapp.hibernate.annotation.CrudField;
-import enterpriseapp.hibernate.annotation.CrudName;
 import enterpriseapp.hibernate.dto.Dto;
 
 @Entity(name = "productos")

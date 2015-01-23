@@ -1,4 +1,4 @@
-package enterpriseapp.hibernate.annotation;
+package annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

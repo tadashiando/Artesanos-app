@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 
 import org.hibernate.annotations.Type;
 
+import annotation.CrudName;
+
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
@@ -37,7 +39,6 @@ import enterpriseapp.hibernate.ContainerFactory;
 import enterpriseapp.hibernate.CustomHbnContainer.EntityItem;
 import enterpriseapp.hibernate.DefaultHbnContainer;
 import enterpriseapp.hibernate.annotation.CrudField;
-import enterpriseapp.hibernate.annotation.CrudName;
 import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.annotation.Downloadable;
 import enterpriseapp.hibernate.dto.Dto;

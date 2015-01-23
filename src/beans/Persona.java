@@ -12,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import annotation.CrudName;
 import enterpriseapp.hibernate.annotation.CrudField;
-import enterpriseapp.hibernate.annotation.CrudName;
 import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.dto.Dto;
 
