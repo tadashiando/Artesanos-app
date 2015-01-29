@@ -16,7 +16,7 @@ import javax.persistence.JoinColumn;
 
 import org.hibernate.annotations.Type;
 
-import annotation.CrudName;
+import annotation.CrudExtras;
 
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
@@ -84,7 +84,7 @@ public class DefaultCrudFieldFactory extends DefaultFieldFactory {
 	 * @param joinColumnAnnotation ColumnAnnotation annotation (if present).
 	 * @param typeAnnotation TypeAnnotation (if present)
 	 */
-	public void configureField(Field field, Object bean, Item item, String pid, Component uiContext, Class<?> propertyType, CrudField crudFieldAnnotation, CrudName crudname, Column columnAnnotation, JoinColumn joinColumnAnnotation, Type typeAnnotation) {
+	public void configureField(Field field, Object bean, Item item, String pid, Component uiContext, Class<?> propertyType, CrudField crudFieldAnnotation, CrudExtras crudname, Column columnAnnotation, JoinColumn joinColumnAnnotation, Type typeAnnotation) {
 		field.setCaption(getFieldCaption(pid, bean.getClass(), crudname));
 		checkRequired(field, crudFieldAnnotation, columnAnnotation, joinColumnAnnotation);
 		checkLength(field, columnAnnotation, typeAnnotation);
@@ -110,7 +110,7 @@ public class DefaultCrudFieldFactory extends DefaultFieldFactory {
 			
 			java.lang.reflect.Field declaredField = bean.getClass().getDeclaredField(pid);
 			CrudField crudFieldAnnotation = declaredField.getAnnotation(CrudField.class);
-			CrudName crudname = declaredField.getAnnotation(CrudName.class);
+			CrudExtras crudextras = declaredField.getAnnotation(CrudExtras.class);
 			Column columnAnnotation = declaredField.getAnnotation(Column.class);
 			JoinColumn joinColumnAnnotation = declaredField.getAnnotation(JoinColumn.class);
 			Downloadable downloadableAnnotation = declaredField.getAnnotation(Downloadable.class);
@@ -171,7 +171,10 @@ public class DefaultCrudFieldFactory extends DefaultFieldFactory {
 				field = super.createField(item, propertyId, uiContext);
 			}
 			
-			configureField(field, bean, item, pid, uiContext, propertyType, crudFieldAnnotation, crudname, columnAnnotation, joinColumnAnnotation, typeAnnotation);
+			if(crudextras != null && !crudextras.showField())
+				return null;
+			
+				configureField(field, bean, item, pid, uiContext, propertyType, crudFieldAnnotation, crudextras, columnAnnotation, joinColumnAnnotation, typeAnnotation);
 			
 		} catch (SecurityException e) {
 			throw new RuntimeException(e);
@@ -448,7 +451,7 @@ public class DefaultCrudFieldFactory extends DefaultFieldFactory {
 	 * @param crudname 
 	 * @return field caption.
 	 */
-	public static String getFieldCaption(Object propertyId, Class<?> type, CrudName crudname) {
+	public static String getFieldCaption(Object propertyId, Class<?> type, CrudExtras crudname) {
 		if(crudname != null)
 			return crudname.name();
 		String typeName = type.getSimpleName();

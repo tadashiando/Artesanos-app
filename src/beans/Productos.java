@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import annotation.CrudName;
+import annotation.CrudExtras;
 import enterpriseapp.hibernate.annotation.CrudField;
 import enterpriseapp.hibernate.dto.Dto;
 
@@ -20,15 +20,16 @@ public class Productos extends Dto implements Serializable{
 
 	@Id
 	@GeneratedValue
+	@CrudExtras(showField=false)
 	private Long id;
 	private String codigo;
 	private String nombre;
-	@CrudName(name = "Cantidad (Gr.)")
+	@CrudExtras(name = "Cantidad (Gr.)")
 	private Integer cantidadGr;
 	
 	@OneToMany(cascade=ALL, orphanRemoval=true)
-	@CrudField(embedded=true, forceRequired=true)
-	@CrudName(name = "Dirección")
+	@CrudField(embedded=true, forceRequired=true, showInTable=false)
+	@CrudExtras(name = "Fórmula")
 	private Set<MaterialProducto> materialProducto; 
 
 	@Override

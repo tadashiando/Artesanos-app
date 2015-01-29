@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import annotation.CrudExtras;
 import enterpriseapp.hibernate.annotation.CrudField;
 import enterpriseapp.hibernate.dto.Dto;
 
@@ -18,7 +19,7 @@ public class MaterialProducto extends Dto implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@CrudField(showInTable=false)
+	@CrudExtras(showField=false)
 	private Long id;
 	
 	@ManyToOne

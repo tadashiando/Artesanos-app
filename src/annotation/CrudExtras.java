@@ -9,10 +9,12 @@ import java.lang.annotation.RetentionPolicy;
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CrudName {
+public @interface CrudExtras {
 	
 	/**
 	 * @return a String who represent the label of the field.
 	 */
 	String name() default "";
+	
+	boolean showField() default true;
 }

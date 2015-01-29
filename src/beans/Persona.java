@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import annotation.CrudName;
+import annotation.CrudExtras;
 import enterpriseapp.hibernate.annotation.CrudField;
 import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.dto.Dto;
@@ -38,7 +38,7 @@ public class Persona extends Dto implements Serializable{
 	@CrudField(isEmail=true)
 	private String email;
 	
-	@CrudName(name = "Dirección")
+	@CrudExtras(name = "Dirección")
 	@OneToMany(cascade=ALL, orphanRemoval=true)
 	@CrudField(embedded=true, forceRequired=true)
 	private Set<Direccion> direccion; 
