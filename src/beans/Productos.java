@@ -70,7 +70,7 @@ public class Productos extends Dto implements Serializable{
 		return materialProducto;
 	}
 
-	public void setMaterialProducto(Set<MaterialProducto> materialProducto) {
+	public void setMaterialProducto (Set<MaterialProducto> materialProducto) {
 		this.materialProducto = materialProducto;
 	}
 }

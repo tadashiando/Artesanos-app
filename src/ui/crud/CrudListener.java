@@ -6,6 +6,9 @@ import java.util.Set;
 import org.hibernate.exception.ConstraintViolationException;
 import org.vaadin.dialogs.ConfirmDialog;
 
+import beans.MaterialProducto;
+import beans.Productos;
+
 import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -13,6 +16,8 @@ import com.vaadin.data.Validator.InvalidValueException;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.Action;
 import com.vaadin.event.Action.Handler;
+import com.vaadin.event.FieldEvents.TextChangeEvent;
+import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.event.ShortcutAction;
@@ -33,7 +38,7 @@ import enterpriseapp.ui.Constants;
  *
  * @param <T> Entity class.
  */
-public class CrudListener<T extends Dto> implements ValueChangeListener, ItemClickListener, ClickListener, Handler {
+public class CrudListener<T extends Dto> implements ValueChangeListener, ItemClickListener, ClickListener, Handler, TextChangeListener {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -222,7 +227,19 @@ public class CrudListener<T extends Dto> implements ValueChangeListener, ItemCli
 	 * @return true if the value is saved.
 	 */
 	public boolean formSaveButtonClicked(boolean showNotification) {
+		
 		try {
+			if(crudComponent.type.getSimpleName().equals("Productos")){
+				Productos productos = (Productos) crudComponent.form.getItemDataSource().getBean();
+				Integer sumGr = 0;
+				for (MaterialProducto materialp : productos.getMaterialProducto())
+					sumGr = sumGr + materialp.getCantidadGr();
+				
+				if(sumGr != productos.getCantidadGr()) {
+					throw new CrudException(Utils.getProperty("ui.formulaViolationErrorOnMath"));
+				}
+			}
+			
 			crudComponent.form.setComponentError(null);
 			crudComponent.form.commit();
 			crudComponent.saveOrUpdate((T) crudComponent.form.getItemDataSource().getBean());
@@ -312,6 +329,11 @@ public class CrudListener<T extends Dto> implements ValueChangeListener, ItemCli
 		if(!crudComponent.getForm().hideUpdateButton) {
 			crudComponent.form.setReadOnly(false);
 		}
+	}
+
+	@Override
+	public void textChange(TextChangeEvent event) {
+		System.out.println("cambió!");
 	}
 	
 }
