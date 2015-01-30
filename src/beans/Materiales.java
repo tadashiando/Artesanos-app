@@ -23,6 +23,11 @@ public class Materiales extends Dto implements Serializable{
 	private BigDecimal precio;
 	
 	@Override
+	public String toString() {
+		return material;
+	}
+	
+	@Override
 	public Long getId() {
 		return id;
 	}

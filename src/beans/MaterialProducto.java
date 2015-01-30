@@ -10,10 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import annotation.CrudExtras;
-import enterpriseapp.hibernate.annotation.CrudField;
+import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.dto.Dto;
 
 @Entity(name = "materialProducto")
+@CrudTable(filteringPropertyName="material")
 public class MaterialProducto extends Dto implements Serializable {
 	private static final long serialVersionUID = -7802414842060633708L;
 	
@@ -23,7 +24,7 @@ public class MaterialProducto extends Dto implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(nullable=false)
 	private Materiales materiales;
 
 	private Integer cantidadGr;
