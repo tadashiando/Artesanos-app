@@ -256,10 +256,10 @@ public class CrudComponent<T extends Dto> extends CustomComponent {
 			if(showTable) {
 				if(verticalLayout) {
 					split = new VerticalSplitPanel();
-					split.setSplitPosition(50);
+					split.setSplitPosition(40);
 				} else {
 					split = new HorizontalSplitPanel();
-					split.setSplitPosition(50);
+					split.setSplitPosition(40);
 				}
 				
 				setCompositionRoot(split);
@@ -283,6 +283,7 @@ public class CrudComponent<T extends Dto> extends CustomComponent {
 				}
 				
 				tableLayout.addComponent(buttons);
+				table.setHeight(90, UNITS_PIXELS);
 			}
 			
 			setCompositionRoot(tableLayout);

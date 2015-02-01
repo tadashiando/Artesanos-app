@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import enterpriseapp.hibernate.annotation.CrudTable;
@@ -16,7 +17,7 @@ public class Materiales extends Dto implements Serializable{
 	private static final long serialVersionUID = -3648663256291840590L;
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String material;
 	private Integer cantidadGr;

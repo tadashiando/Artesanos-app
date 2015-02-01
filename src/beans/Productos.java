@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -19,8 +20,9 @@ public class Productos extends Dto implements Serializable{
 	private static final long serialVersionUID = -150009621453090102L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@CrudExtras(showField=false)
+	@CrudField(showInTable=false)
 	private Long id;
 	private String codigo;
 	private String nombre;
@@ -70,7 +72,7 @@ public class Productos extends Dto implements Serializable{
 		return materialProducto;
 	}
 
-	public void setMaterialProducto (Set<MaterialProducto> materialProducto) {
+	public void setMaterialProducto(Set<MaterialProducto> materialProducto) {
 		this.materialProducto = materialProducto;
 	}
 }
