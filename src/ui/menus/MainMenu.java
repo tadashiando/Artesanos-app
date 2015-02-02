@@ -21,11 +21,11 @@ public class MainMenu {
 		clientes.addItem("Registro de Empresas",
 		    new ThemeResource("icons/coffee-16px.png"), registros.registroEmpresa());
 
-		MenuItem productos = menu.addItem("Productos", null, null);
+		MenuItem productos = barmenu.addItem("Productos", null, null);
 		productos.addItem("Formulas de Productos",
-			    new ThemeResource("icons/tea-16px.png"), registros.registroProductos());
-		productos.addItem("Formulas de Materiales",
-			    new ThemeResource("icons/tea-16px.png"), registros.registroMateriales());
+			    new ThemeResource("icons/formula.png"), registros.registroProductos());
+		productos.addItem("Materiales",
+			    new ThemeResource("icons/materials.png"), registros.registroMateriales());
 
 		menu.addSeparator();
 		menu.addItem("Quit Drinking", null, null);
