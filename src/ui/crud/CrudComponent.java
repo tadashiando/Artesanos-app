@@ -47,8 +47,6 @@ import enterpriseapp.hibernate.ContainerFactory;
 import enterpriseapp.hibernate.DefaultHbnContainer;
 import enterpriseapp.hibernate.dto.Dto;
 import enterpriseapp.ui.Constants;
-import ui.crud.CrudTable;
-import ui.crud.EntitySetField;
 
 /**
  * Full CRUD Vaadin component for Entity classes.
@@ -177,6 +175,7 @@ public class CrudComponent<T extends Dto> extends CustomComponent {
 			fieldFactory = new DefaultCrudFieldFactory();
 		}
 		
+		
 		if(crudTable == null) {
 			table = new CrudTable<T>(type, container, fieldFactory);
 		} else {
@@ -229,7 +228,7 @@ public class CrudComponent<T extends Dto> extends CustomComponent {
 		Panel formPanel = new Panel();
 		formPanel.addComponent(form);
 		formPanel.setStyleName(Reindeer.LAYOUT_BLUE);
-		
+
 		form.firstButton.setStyleName(Reindeer.BUTTON_SMALL);
 		form.previousButton.setStyleName(Reindeer.BUTTON_SMALL);
 		form.nextButton.setStyleName(Reindeer.BUTTON_SMALL);
@@ -245,6 +244,7 @@ public class CrudComponent<T extends Dto> extends CustomComponent {
 		formLayout.setMargin(true);
 		formLayout.addComponent(navigatorLayout);
 		formLayout.addComponent(formPanel);
+		
 		
 		filterLayout.setWidth("100%");
 		
@@ -264,6 +264,7 @@ public class CrudComponent<T extends Dto> extends CustomComponent {
 				
 				setCompositionRoot(split);
 				
+//				split.setStyleName(Reindeer.LAYOUT_BLUE);
 				split.setFirstComponent(tableLayout);
 				split.setSecondComponent(formLayout);
 			} else {

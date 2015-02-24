@@ -10,6 +10,7 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.CloseEvent;
+import com.vaadin.ui.themes.Reindeer;
 
 import ui.crud.CrudBuilder;
 import ui.crud.CrudComponent;
@@ -65,6 +66,7 @@ public class Registros extends CustomComponent implements Window.CloseListener{
 		mywindow.setPositionX(200);
 		mywindow.setPositionY(100);
 		mywindow.setWidth("80%");
+//		mywindow.setStyleName("stylesTadashi.css");
 		ventanaPrincipal.addWindow(mywindow);
 		mywindow.addListener(this);
 		
