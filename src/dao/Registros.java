@@ -1,5 +1,8 @@
 package dao;
 
+import ui.crud.CrudBuilder;
+import ui.crud.CrudComponent;
+import beans.Ciudad;
 import beans.Empresa;
 import beans.Materiales;
 import beans.Persona;
@@ -10,10 +13,6 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.CloseEvent;
-import com.vaadin.ui.themes.Reindeer;
-
-import ui.crud.CrudBuilder;
-import ui.crud.CrudComponent;
 
 public class Registros extends CustomComponent implements Window.CloseListener{
 	private static final long serialVersionUID = -2134814601190871857L;
@@ -36,9 +35,15 @@ public class Registros extends CustomComponent implements Window.CloseListener{
 		return commandMenu(crud);
 	}
 	
+	public MenuBar.Command registroCiudad() {
+		CrudComponent<Ciudad> crud = new CrudBuilder<Ciudad>(Ciudad.class).build();
+		crud.setCaption("Registro de Ciudad");
+		return commandMenu(crud);
+	}
+	
 	public MenuBar.Command registroProductos() {
 		CrudComponent<Productos> crud = new CrudBuilder<Productos>(Productos.class).build();
-		crud.setCaption("Registro de Productos y Fórmulas");
+		crud.setCaption("Registro de Productos y FÃ³rmulas");
 		return commandMenu(crud);
 	}
 	

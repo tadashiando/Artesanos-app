@@ -17,9 +17,13 @@ public class MainMenu {
 
 		MenuItem clientes = menu.addItem("Clientes", null, null);
 		clientes.addItem("Registro de Personas",
-		    new ThemeResource("icons/tea-16px.png"), registros.registroPersona());
+		    new ThemeResource("icons/persona.png"), registros.registroPersona());
 		clientes.addItem("Registro de Empresas",
-		    new ThemeResource("icons/coffee-16px.png"), registros.registroEmpresa());
+		    new ThemeResource("icons/empresa.png"), registros.registroEmpresa());
+		clientes.addSeparator();
+		clientes.addItem("Registro de Ciudades",
+			    new ThemeResource("icons/ciudad.png"), registros.registroCiudad());
+		menu.addItem("Quit Drinking", null, null);
 
 		MenuItem productos = barmenu.addItem("Productos", null, null);
 		productos.addItem("Formulas de Productos",
@@ -27,8 +31,6 @@ public class MainMenu {
 		productos.addItem("Materiales",
 			    new ThemeResource("icons/materials.png"), registros.registroMateriales());
 
-		menu.addSeparator();
-		menu.addItem("Quit Drinking", null, null);
 		        
 		MenuItem snacks = barmenu.addItem("Snacks", null, null);
 		snacks.addItem("Weisswurst", null, null);

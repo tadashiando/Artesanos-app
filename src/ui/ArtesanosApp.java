@@ -19,7 +19,6 @@ public class ArtesanosApp extends EnterpriseApplication {
 		MenuBar menuBar = new MainMenu().mainMenu(mainWindow);
 		mainWindow.addComponent(menuBar);
 		setMainWindow(mainWindow);
+		setTheme("artesanos-apptheme");
 	}	
-	
-	
 }

@@ -6,13 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.dto.Dto;
 
 
 @Entity(name = "direccion")
-@CrudTable(filteringPropertyName = "calle")
+@CrudTable(filteringPropertyName = "ciudad")
 public class Direccion extends Dto implements Serializable{
 	private static final long serialVersionUID = 8099254536183698672L;
 
@@ -24,6 +26,10 @@ public class Direccion extends Dto implements Serializable{
 	private Integer numeroCasa;
 	private String complemento;
 	private String codigoPostal;
+	@ManyToOne
+	@JoinColumn(nullable=false)
+	private Ciudad ciudad;
+	
 	
 	@Override
 	public Long getId() {
@@ -66,5 +72,13 @@ public class Direccion extends Dto implements Serializable{
 
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
+	}
+
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
 	}
 }

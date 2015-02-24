@@ -6,6 +6,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 	<class>beans.Persona</class>
 	<class>beans.Empresa</class>
 	<class>beans.Direccion</class>
+	<class>beans.Ciudad</class>
 	<class>beans.Materiales</class>
 	<class>beans.Productos</class>
 	<class>beans.MaterialProducto</class>

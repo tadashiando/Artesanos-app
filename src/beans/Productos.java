@@ -31,7 +31,7 @@ public class Productos extends Dto implements Serializable{
 	
 	@OneToMany(cascade=ALL, orphanRemoval=true)
 	@CrudField(embedded=true, forceRequired=true, showInTable=false)
-	@CrudExtras(name = "Fórmula")
+	@CrudExtras(name = "FÃ³rmula")
 	private Set<MaterialProducto> materialProducto; 
 
 	@Override
