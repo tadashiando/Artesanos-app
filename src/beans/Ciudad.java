@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import annotation.CrudExtras;
 import enterpriseapp.hibernate.annotation.CrudTable;
 import enterpriseapp.hibernate.dto.Dto;
 
@@ -18,6 +19,7 @@ public class Ciudad extends Dto implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@CrudExtras(showField=false)
 	private Long id;
 	
 	private String ciudad;
@@ -33,6 +35,7 @@ public class Ciudad extends Dto implements Serializable{
 		this.id = (Long) id;
 	}
 
+	// Para mostrar lo que se verá en el Combobox
 	@Override
 	public String toString() {
 		return ciudad;

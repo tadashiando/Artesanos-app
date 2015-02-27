@@ -38,7 +38,7 @@ public class Persona extends Dto implements Serializable{
 	@CrudField(isEmail=true)
 	private String email;
 	
-	@CrudExtras(name = "Dirección")
+	@CrudExtras(name = "DirecciÃ³n")
 	@OneToMany(cascade=ALL, orphanRemoval=true)
 	@CrudField(embedded=true, forceRequired=true)
 	private Set<Direccion> direccion; 
