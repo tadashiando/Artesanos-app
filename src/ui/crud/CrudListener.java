@@ -6,7 +6,7 @@ import java.util.Set;
 import org.hibernate.exception.ConstraintViolationException;
 import org.vaadin.dialogs.ConfirmDialog;
 
-import beans.MaterialProducto;
+import validation.FormulaValidator;
 import beans.Productos;
 
 import com.vaadin.data.Item;
@@ -228,21 +228,14 @@ public class CrudListener<T extends Dto> implements ValueChangeListener, ItemCli
 		try {
 			crudComponent.form.setComponentError(null);
 			crudComponent.form.commit();
-			if(crudComponent.type.getSimpleName().equals("Productos")){
-				Productos productos = (Productos) crudComponent.form.getItemDataSource().getBean();
-				Integer sumGr = 0;
-				for (MaterialProducto materialp : productos.getMaterialProducto())
-					sumGr = sumGr + materialp.getCantidadGr();
-				
-				if(!sumGr.equals(productos.getCantidadGr())) {
-					throw new CrudException(Utils.getProperty("ui.formulaViolationErrorOnMath"));
-				}
-			}
-			crudComponent.saveOrUpdate((T) crudComponent.form.getItemDataSource().getBean());
-			crudComponent.form.setReadOnly(true);
 			
-			if(showNotification) {
-				crudComponent.getApplication().getMainWindow().showNotification(Constants.uiSaved);
+			if (validateCrudComponent(crudComponent)) {
+				crudComponent.saveOrUpdate((T) crudComponent.form.getItemDataSource().getBean());
+				crudComponent.form.setReadOnly(true);
+
+				if (showNotification) {
+					crudComponent.getApplication().getMainWindow().showNotification(Constants.uiSaved);
+				}
 			}
 		} catch(InvalidValueException e) {
 			return false;
@@ -252,6 +245,14 @@ public class CrudListener<T extends Dto> implements ValueChangeListener, ItemCli
 		} catch(CrudException e) {
 			crudComponent.form.setComponentError(new UserError(e.getMessage()));
 			return false;
+		}
+		return true;
+	}
+
+	private boolean validateCrudComponent(CrudComponent<T> component) {
+		if(Productos.class.isAssignableFrom(component.type)){
+			FormulaValidator validator = new FormulaValidator(Utils.getProperty("ui.formulaViolationErrorOnMath"));
+			return validator.isValid(component.type);
 		}
 		return true;
 	}

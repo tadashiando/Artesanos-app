@@ -62,7 +62,7 @@ public class CrudComponent<T extends Dto> extends CustomComponent {
 	
 	private static Logger logger = LoggerFactory.getLogger(CrudComponent.class);
 
-	protected final Class<T> type;
+	public final Class<T> type;
 	protected CrudTable<T> table;
 	protected CrudForm<T> form;
 	protected Container container;
