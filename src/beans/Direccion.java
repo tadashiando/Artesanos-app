@@ -42,6 +42,11 @@ public class Direccion extends Dto implements Serializable{
 		
 	}
 
+	@Override
+	public String toString(){
+		return calle + " " + numeroCasa + ", " + ciudad + ".";
+	}
+	
 	public String getCalle() {
 		return calle;
 	}

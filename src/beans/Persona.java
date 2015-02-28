@@ -25,6 +25,7 @@ public class Persona extends Dto implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@CrudField(showInTable=false)
+	@CrudExtras(showField=false)
 	private Long id;
 	
 	@Column(nullable=false)

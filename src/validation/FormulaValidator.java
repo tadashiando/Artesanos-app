@@ -17,13 +17,12 @@ public class FormulaValidator extends AbstractValidator {
 
 	@Override
 	public boolean isValid(Object value) {
-		
 			Productos productos = (Productos) value;
 			Integer sumGr = 0;
 			for (MaterialProducto materialp : productos.getMaterialProducto())
 				sumGr = sumGr + materialp.getCantidadGr();
 			
-			if(!sumGr.equals(productos.getCantidadGr())) {
+			if(sumGr.intValue() < (productos.getCantidadGr().intValue())) {
 				throw new CrudException(Utils.getProperty("ui.formulaViolationErrorOnMath"));
 			}
 		return true;

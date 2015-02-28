@@ -252,7 +252,7 @@ public class CrudListener<T extends Dto> implements ValueChangeListener, ItemCli
 	private boolean validateCrudComponent(CrudComponent<T> component) {
 		if(Productos.class.isAssignableFrom(component.type)){
 			FormulaValidator validator = new FormulaValidator(Utils.getProperty("ui.formulaViolationErrorOnMath"));
-			return validator.isValid(component.type);
+			return validator.isValid(crudComponent.form.getItemDataSource().getBean());
 		}
 		return true;
 	}
