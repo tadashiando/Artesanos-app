@@ -14,7 +14,7 @@ public class ArtesanosApp extends EnterpriseApplication {
 	public void init() {
 		super.init();
 
-		Window mainWindow = new Window("Artesanos del Vallecito");
+		Window mainWindow = new Window("Andos");
 		mainWindow.setSizeFull();
 		MenuBar menuBar = new MainMenu().mainMenu(mainWindow);
 		mainWindow.addComponent(menuBar);

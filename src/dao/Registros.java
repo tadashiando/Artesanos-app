@@ -14,6 +14,8 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.CloseEvent;
 
+import fieldFactory.MaterialesFieldFactory;
+
 public class Registros extends CustomComponent implements Window.CloseListener{
 	private static final long serialVersionUID = -2134814601190871857L;
 	protected Window ventanaPrincipal;
@@ -48,8 +50,9 @@ public class Registros extends CustomComponent implements Window.CloseListener{
 	}
 	
 	public MenuBar.Command registroMateriales() {
-		CrudComponent<Materiales> crud = new CrudBuilder<Materiales>(Materiales.class).build();
-		crud.setCaption("Registro de Materiales");
+		CrudComponent<Materiales> crud = new CrudBuilder<Materiales>(Materiales.class)
+		.setFieldFactory(new MaterialesFieldFactory())
+		.build();
 		return commandMenu(crud);
 	}
 	

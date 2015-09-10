@@ -264,7 +264,7 @@ public class CrudComponent<T extends Dto> extends CustomComponent {
 				
 				setCompositionRoot(split);
 				
-//				split.setStyleName(Reindeer.LAYOUT_BLUE);
+				split.setStyleName(Reindeer.LAYOUT_BLUE);
 				split.setFirstComponent(tableLayout);
 				split.setSecondComponent(formLayout);
 			} else {
